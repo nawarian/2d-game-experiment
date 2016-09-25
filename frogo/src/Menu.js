@@ -40,6 +40,7 @@ Menu.prototype = {
   },
 
   acaoBotaoPlay: function () {
+    game.scale.startFullScreen(false);
     game.state.start('Play');
   }
 };

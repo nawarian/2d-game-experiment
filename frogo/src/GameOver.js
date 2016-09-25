@@ -3,6 +3,8 @@ GameOver = function (game) {};
 GameOver.prototype = {
   init: function (pontos) {
     this.pontos = (pontos != null) ? pontos : 0;
+
+    game.scale.stopFullScreen()
   },
 
   create: function () {
@@ -29,6 +31,7 @@ GameOver.prototype = {
   },
 
   acaoBotaoContinuar: function () {
+    game.scale.startFullScreen(true);
     game.state.start('Play');
   }
 };

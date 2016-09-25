@@ -3,6 +3,8 @@ Play = function (game) {};
 Play.prototype = {
   init: function (pontos) {
     this.pontos = (pontos != null) ? pontos : 0;
+
+    game.scale.startFullScreen(false);
   },
 
   create: function () {
@@ -215,6 +217,7 @@ Play.prototype = {
     }
 
     setTimeout(function() {
+      game.scale.stopFullScreen();
       game.state.start('GameOver', true, false, this.pontos);
     }, 1000);
   },

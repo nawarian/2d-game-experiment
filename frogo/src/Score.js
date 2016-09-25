@@ -3,6 +3,8 @@ Score = function (game) {};
 Score.prototype = {
   init: function (pontos) {
     this.pontos = (pontos != null) ? pontos : 0;
+
+    game.scale.stopFullScreen();
   },
 
   create: function () {
@@ -30,6 +32,7 @@ Score.prototype = {
   },
 
   acaoBotaoContinuar: function () {
+    game.scale.startFullScreen(false);
     game.state.start('Play', true, false, this.pontos);
   }
 };
