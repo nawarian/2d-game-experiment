@@ -27,8 +27,8 @@ Boot.prototype = {
     game.state.add('Preload', Preload);
     game.state.add('Menu', Menu);
     game.state.add('Play', Play);
-    // game.state.add('Score', Score);
-    // game.state.add('GameOver', GameOver);
+    game.state.add('Score', Score);
+    game.state.add('GameOver', GameOver);
     
     // Calls splash screen
     game.state.start('Splash');

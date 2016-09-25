@@ -1,6 +1,10 @@
 Play = function (game) {};
 
 Play.prototype = {
+  init: function (pontos) {
+    this.pontos = (pontos != null) ? pontos : 0;
+  },
+
   create: function () {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -14,6 +18,14 @@ Play.prototype = {
 
     this.teclado = game.input.keyboard.createCursorKeys();
     this.botaoAtivo = '';
+
+    var estilo = {
+      font: 'bold 20px Arial',
+      fill: '#fff'
+    };
+
+    var texto = game.add.text(8, 8, this.pontos + ' Pontos', estilo);
+    texto.setShadow(1, 1, 'rgba(0, 0, 0, 0.5)', 2);
   },
 
   update: function () {
@@ -194,7 +206,24 @@ Play.prototype = {
     }
   },
 
-  colideComVeiculos: function () {},
+  colideComVeiculos: function () {
+    var som = game.add.audio('fimjogo');
+    som.play();
 
-  colideComTesouro: function () {}
+    if ('vibrate' in window.navigator) {
+      window.navigator.vibrate(200);
+    }
+
+    setTimeout(function() {
+      game.state.start('GameOver', true, false, this.pontos);
+    }, 1000);
+  },
+
+  colideComTesouro: function () {
+    var som = game.add.audio('pontuou');
+    som.play();
+    this.pontos++;
+
+    game.state.start('Score', true, false, this.pontos);
+  }
 };

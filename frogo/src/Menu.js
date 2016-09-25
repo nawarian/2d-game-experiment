@@ -29,6 +29,10 @@ Menu.prototype = {
                         1
                       );
     this.botao_play.anchor.setTo(0.5, 0.5);
+
+    var musica = game.add.audio('musica');
+    musica.loop = true;
+    musica.play();
   },
 
   update: function () {
