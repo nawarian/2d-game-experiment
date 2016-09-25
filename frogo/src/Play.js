@@ -17,6 +17,10 @@ Play.prototype = {
   },
 
   update: function () {
+    game.physics.arcade.overlap(this.jogador, this.veiculos, this.colideComVeiculos, null, this);
+    game.physics.arcade.collide(this.jogador, this.arbustos);
+    game.physics.arcade.overlap(this.jogador, this.tesouro, this.colideComTesouro, null, this);
+
     this.atualizarVeiculos();
     this.verificarTeclas();
   },
@@ -188,5 +192,9 @@ Play.prototype = {
       this.jogador.body.velocity.x = 0;
       this.jogador.body.velocity.y = 0;
     }
-  }
+  },
+
+  colideComVeiculos: function () {},
+
+  colideComTesouro: function () {}
 };
